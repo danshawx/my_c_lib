@@ -236,7 +236,7 @@ T_node *linked_list_creat(void)
 
 int main()
 {
-    printf("%s", "Hello World!\n");
+    printf("%s", "test start!\n");
 
 /*
     T_node *p_list1 = NULL;
@@ -259,11 +259,11 @@ int main()
     //linked_list_del(&linked_head, p_list2);
     //linked_list_del(&linked_head, p_list1);
 
-    printf("linked-list test end");
-*/
-    uint8_t read_data = 0;
+    printf("linked-list test end");*/
+
+   /* uint8_t read_data = 0;
     int32_t code = 0;
-   /* T_DequeDate *p_quehead = Deque_init(5);
+    T_DequeDate *p_quehead = Deque_init(5);
 
     Deque_push(p_quehead, 10);
     Deque_push(p_quehead, 11);
@@ -278,6 +278,9 @@ int main()
     code = Deque_pop(p_quehead, &read_data);
     code = Deque_pop(p_quehead, &read_data);
     code = Deque_pop(p_quehead, &read_data);*/
+
+    uint8_t read_data = 0;
+    int32_t code = 0;
 
     T_DeCirqueDate *p_quehead  = DeCirque_init(5);
     DeCirque_push(p_quehead, 10);
@@ -294,6 +297,6 @@ int main()
     code = DeCirque_pop(p_quehead, &read_data);
     code = DeCirque_pop(p_quehead, &read_data);
 
-    printf("cirqueue test end");
+    printf("test end");
 
 }
