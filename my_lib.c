@@ -17,36 +17,45 @@ int32_t is_DeCirqueempty(T_DeCirqueDate *p_quehead)
     return 0;
 }
 
-int32_t DeCirque_pop(T_DeCirqueDate *p_quehead, uint8_t *p_val)
+int32_t DeCirque_pop(T_DeCirqueDate *p_quehead, uint8_t *p_buf, uint8_t buf_len)
 {
+	uint8_t i = 0;
+
     if (NULL == p_quehead)
         return -1;
+    if (buf_len > p_quehead->size)
+    	return -1;
 
-    if (!is_DeCirqueempty(p_quehead))
+    for (i = 0; i < buf_len; i ++)
     {
-        *p_val = p_quehead->p_queuebuf[p_quehead->front];
-        p_quehead->front = (p_quehead->front + 1) % (p_quehead->cap);
-        p_quehead->size -= 1;
-        return 1;
+    	p_buf[i] = p_quehead->p_queuebuf[p_quehead->front];
+		p_quehead->front = (p_quehead->front + 1) % (p_quehead->cap);
+		p_quehead->size -= 1;
     }
-    return -2;
+    return 1;
 }
 
-int32_t DeCirque_push(T_DeCirqueDate *p_quehead, int8_t value)
+int32_t DeCirque_push(T_DeCirqueDate *p_quehead, uint8_t *p_buf, uint8_t buf_len)
 {
+	uint8_t i = 0;
+
     if (NULL == p_quehead)
         return -1;
-
     if (NULL == p_quehead->p_queuebuf)
         return -1;
-    
-    p_quehead->p_queuebuf[p_quehead->rear] = value;
-    p_quehead->rear = (p_quehead->rear + 1) % (p_quehead->cap);
-    if (p_quehead->size < p_quehead->cap)
-        p_quehead->size += 1;
-    else
+    if (buf_len <= 0)
+    	return -1;
+
+    for (i = 0; i < buf_len; i ++)
     {
-        p_quehead->front = p_quehead->rear;
+    	p_quehead->p_queuebuf[p_quehead->rear] = p_buf[i];
+		p_quehead->rear = (p_quehead->rear + 1) % (p_quehead->cap);
+		if (p_quehead->size < p_quehead->cap)
+			p_quehead->size += 1;
+		else
+		{
+			p_quehead->front = p_quehead->rear;
+		}
     }
     
     return 1;
