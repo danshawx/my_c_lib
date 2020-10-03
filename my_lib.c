@@ -3,7 +3,7 @@
 #include "stdio.h"
 #include "my_lib.h"
 
-//*********************** non-circular queue ****************//
+//*********************** circular queue ****************//
 int32_t is_DeCirqueempty(T_DeCirqueDate *p_quehead)
 {
     if (NULL == p_quehead)
